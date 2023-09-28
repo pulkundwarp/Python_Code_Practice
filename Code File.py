@@ -1,4 +1,3 @@
-# Pranav Pulkundwar 
 
 # ------------------- Problem 1 ------------------- #
 
@@ -71,8 +70,3 @@ def ifelse(test,yes,no):
 		else:
 			res_list.append(no[i])
 	return res_list   # Printing the resulting list
-
-### For all problems
-# Although i have used 'return' as keyword to produce results it is not pasting results.
-# I had to use 'print' to view results of the functions which i replaced with 'return'. the functions run wthout error.
-# On internet it said 'return' won't produce results to view since it is being used in a function/procedure.

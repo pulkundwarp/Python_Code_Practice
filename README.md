@@ -1,2 +1,2 @@
 # Python_Code
-Collection of my python project &amp; practice code
+Collection of my python practice code

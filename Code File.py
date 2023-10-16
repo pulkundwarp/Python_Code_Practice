@@ -1,5 +1,108 @@
+# Pranav Pulkundwar 
 
 # ------------------- Problem 1 ------------------- #
+
+import math
+
+def median(x):
+    xS = sorted(x)    #Sorting the given list x
+    n = len(xS)    #Calculating the length of x    
+    if n % 2 == 1:    #if odd numbered list then returns middle element
+        return xS[n // 2]
+    else:
+        val1 = xS[n // 2 - 1]
+        val2 = xS[n // 2]
+        return (val1 + val2) / 2    #If even numbered list, returns the average of the two middle elements
+
+# Second solution to the same problem
+
+def median2(x):
+    if len(x) < 1:
+        return None
+
+    xS = sorted(x)    #Sorting the given list x
+    n = len(xS)    #Calculating the length of x 
+    i1 = math.floor((n - 1) / 2)
+    i2 = math.ceil((n - 1) / 2)
+    
+    if n % 2 == 0:
+        return (xS[i1] + xS[i2]) / 2    #If even numbered list, returns the average of the two middle elements
+    else:
+        return xS[i1]     #if odd numbered list then returns middle element
+
+
+
+# ------------------- Problem 2 ------------------- #
+
+#Using above median function as a helper function to calculate median of the list
+
+def iqr(x):
+    xsort = sorted(x)    #Sorting the given list x  
+    if len(xsort) <= 1:    #checking the size of the list
+        return 0.0
+    if len(xsort) % 2 == 0:
+        lhalf = xsort[:len(xsort) // 2]    #spliting even numbered list in two parts
+        uhalf = xsort[len(xsort) // 2:]
+    else:
+        lhalf = xsort[:len(xsort) // 2 + 1]
+        uhalf = xsort[len(xsort) // 2:]
+    q1 = median(lhalf)    #Calculating q1 using median function
+    q3 = median(uhalf)    #Calculating q2 using median function
+    return float(q3 - q1)
+
+
+
+# ------------------- Problem 3 ------------------- #
+
+#Using above median function as a helper function to calculate median of the list
+
+def quartiles(x):    #creating similar function as above to get the q1 and q2
+    asort = sorted(x)
+    if len(x) % 2 == 0:
+        lhalf = asort[:len(x) // 2]
+        uhalf = asort[len(x) // 2:]
+    else:
+        lhalf = asort[:len(x) // 2 + 1]
+        uhalf = asort[len(x) // 2:]
+    Q1 = median(lhalf)
+    Q3 = median(uhalf)
+    return {'q1': Q1, 'q3': Q3}
+
+def fivenum(a):   #combining and printing all the data in one list
+    x = list(a)
+    x.sort()  
+    xmin = min(x)
+    quartile_result = quartiles(x)
+    q1 = quartile_result['q1']
+    median_x = median(x)
+    q3 = quartile_result['q3']
+    xmax = max(x)
+    return [xmin, q1, median_x, q3, xmax]
+
+
+
+# ------------------- Problem 4 ------------------- #
+
+def order(x):
+    x_ind = list(enumerate(x))    #pairing indices with the elements
+    ele_sort = sorted(x_ind, key=lambda pair: pair[1])    #Sorting by element in ascending order
+    ind_sort = [pair[0] for pair in ele_sort]    #getting the original indices
+    return ind_sort
+
+
+
+# ------------------- Problem 5 ------------------- #
+
+def rank(x):
+    y = list(x)
+    output = [0] * len(y)
+    for i, j in enumerate(sorted(range(len(y)), key=lambda z: y[z])):
+        output[j] = i + 1
+    return output
+
+
+
+# ------------------- Problem 6 ------------------- #
 
 def cummax(x):
 	max_num_list = []   # Creating empty List
@@ -13,7 +116,7 @@ def cummax(x):
 
 
 
-# ------------------- Problem 2 ------------------- #
+# ------------------- Problem 7 ------------------- #
 
 def cumsum(x):
 	sum_list = []   # Creating empty list
@@ -26,7 +129,7 @@ def cumsum(x):
 
 
 
-# ------------------- Problem 3 ------------------- #
+# ------------------- Problem 8 ------------------- #
 
 import re   # Importing the regex library to use lower command
 def lower_case(x):
@@ -40,7 +143,7 @@ def tokenize(x):
 
 
 
-# ------------------- Problem 4 ------------------- #
+# ------------------- Problem 9 ------------------- #
 
 # Using function 'lower_case' from above 
 
@@ -60,7 +163,7 @@ def count_words(x):
 
 
 
-# ------------------- Problem 5 ------------------- #
+# ------------------- Problem 10 ------------------- #
 
 def ifelse(test,yes,no):
 	res_list = []   # Creating empty list to add values
@@ -70,3 +173,107 @@ def ifelse(test,yes,no):
 		else:
 			res_list.append(no[i])
 	return res_list   # Printing the resulting list
+
+
+# Pranav Pulkundwar 
+
+# ------------------- Problem 1 ------------------- #
+
+import math
+
+def median(x):
+    xS = sorted(x)    #Sorting the given list x
+    n = len(xS)    #Calculating the length of x    
+    if n % 2 == 1:    #if odd numbered list then returns middle element
+        return xS[n // 2]
+    else:
+        val1 = xS[n // 2 - 1]
+        val2 = xS[n // 2]
+        return (val1 + val2) / 2    #If even numbered list, returns the average of the two middle elements
+
+# Second solution to the same problem
+
+def median2(x):
+    if len(x) < 1:
+        return None
+
+    xS = sorted(x)    #Sorting the given list x
+    n = len(xS)    #Calculating the length of x 
+    i1 = math.floor((n - 1) / 2)
+    i2 = math.ceil((n - 1) / 2)
+    
+    if n % 2 == 0:
+        return (xS[i1] + xS[i2]) / 2    #If even numbered list, returns the average of the two middle elements
+    else:
+        return xS[i1]     #if odd numbered list then returns middle element
+
+
+
+# ------------------- Problem 2 ------------------- #
+
+#Using above median function as a helper function to calculate median of the list
+
+def iqr(x):
+    xsort = sorted(x)    #Sorting the given list x  
+    if len(xsort) <= 1:    #checking the size of the list
+        return 0.0
+    if len(xsort) % 2 == 0:
+        lhalf = xsort[:len(xsort) // 2]    #spliting even numbered list in two parts
+        uhalf = xsort[len(xsort) // 2:]
+    else:
+        lhalf = xsort[:len(xsort) // 2 + 1]
+        uhalf = xsort[len(xsort) // 2:]
+    q1 = median(lhalf)    #Calculating q1 using median function
+    q3 = median(uhalf)    #Calculating q2 using median function
+    return float(q3 - q1)
+
+
+
+# ------------------- Problem 3 ------------------- #
+
+#Using above median function as a helper function to calculate median of the list
+
+def quartiles(x):    #creating similar function as above to get the q1 and q2
+    asort = sorted(x)
+    if len(x) % 2 == 0:
+        lhalf = asort[:len(x) // 2]
+        uhalf = asort[len(x) // 2:]
+    else:
+        lhalf = asort[:len(x) // 2 + 1]
+        uhalf = asort[len(x) // 2:]
+    Q1 = median(lhalf)
+    Q3 = median(uhalf)
+    return {'q1': Q1, 'q3': Q3}
+
+def fivenum(a):   #combining and printing all the data in one list
+    x = list(a)
+    x.sort()  
+    xmin = min(x)
+    quartile_result = quartiles(x)
+    q1 = quartile_result['q1']
+    median_x = median(x)
+    q3 = quartile_result['q3']
+    xmax = max(x)
+    return [xmin, q1, median_x, q3, xmax]
+
+
+
+# ------------------- Problem 4 ------------------- #
+
+def order(x):
+    x_ind = list(enumerate(x))    #pairing indices with the elements
+    ele_sort = sorted(x_ind, key=lambda pair: pair[1])    #Sorting by element in ascending order
+    ind_sort = [pair[0] for pair in ele_sort]    #getting the original indices
+    return ind_sort
+
+
+
+# ------------------- Problem 5 ------------------- #
+
+def rank(x):
+    y = list(x)
+    output = [0] * len(y)
+    for i, j in enumerate(sorted(range(len(y)), key=lambda z: y[z])):
+        output[j] = i + 1
+    return output
+

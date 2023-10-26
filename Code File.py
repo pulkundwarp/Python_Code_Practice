@@ -1,6 +1,6 @@
 # Pranav Pulkundwar 
 
-# ------------------- Problem 1 ------------------- #
+# ------------------- Problem ------------------- #
 
 def rle_encode(x):
     if not x:

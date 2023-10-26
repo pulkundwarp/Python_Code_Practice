@@ -2,6 +2,89 @@
 
 # ------------------- Problem 1 ------------------- #
 
+def rle_encode(x):
+    if not x:
+        return [], []
+    
+    item = []    #declaring empty lists
+    count = []
+
+    cur_count = 1    #declaring initial count and character
+    cur_item = x[0]
+
+    for i in range(1, len(x)):    #If a char is equal to the previous character then it will add 1 in the counter
+        if x[i] == cur_item:
+            cur_count = cur_count + 1
+        else:    #if the char is not equal to previous char then adding it to the list
+            item.append(cur_item)
+            count.append(cur_count)
+            cur_item = x[i]
+            cur_count = 1
+    item.append(cur_item)
+    count.append(cur_count)
+    return (item, count)    #printing the tuple of lists
+
+
+
+# ------------------- Problem ------------------- #
+
+def rle_decode(items, count):
+    res = []
+    for i,j in zip(items, count):
+        cur_list = []
+        cur_list.append(i)
+        cur_list = cur_list*j
+        res.extend(cur_list)
+    return res
+
+
+
+# ------------------- Problem ------------------- #
+
+class Rle:
+    def __init__(self, values, lengths = None):
+        if lengths is None:    #Checking if length is provided in the input, otheriwse encoding it using 'encode_rle' function
+            self.values, self.lengths = self.encode_rle(values)
+        else:
+            self.values = values
+            self.lengths = lengths
+
+    @staticmethod
+    def encode_rle(x):
+        if not x:
+            return [], []
+
+        values = []    #declaring empty lists
+        lengths = []
+
+        cur_item = 1    #declaring initial count and character
+        cur_count = x[0]
+
+        for i in range(1, len(x)):    #If a char is equal to the previous character then it will add 1 in the counter
+            if x[i] == cur_count:
+                cur_item += 1
+            else:    #if the char is not equal to previous char then adding it to the list
+                values.append(cur_count)
+                lengths.append(cur_item)
+                cur_count = x[i]
+                cur_item = 1
+        values.append(cur_count)
+        lengths.append(cur_item)
+        return (values, lengths)    #printing the tuple of lists
+    
+    def __getitem__(self, i):
+        res = rle_decode(self.values,self.lengths)
+        return res[i]
+
+    def append(self, values):
+        if len(self.values) == 0 or self.values[-1] != values:
+            self.values.append(values)
+            self.lengths.append(1)
+        else:
+            self.lengths[-1] += 1
+
+# ------------------- Problem ------------------- #
+
 import math
 
 def median(x):
@@ -32,7 +115,7 @@ def median2(x):
 
 
 
-# ------------------- Problem 2 ------------------- #
+# ------------------- Problem ------------------- #
 
 #Using above median function as a helper function to calculate median of the list
 
@@ -52,7 +135,7 @@ def iqr(x):
 
 
 
-# ------------------- Problem 3 ------------------- #
+# ------------------- Problem ------------------- #
 
 #Using above median function as a helper function to calculate median of the list
 
@@ -81,7 +164,7 @@ def fivenum(a):   #combining and printing all the data in one list
 
 
 
-# ------------------- Problem 4 ------------------- #
+# ------------------- Problem ------------------- #
 
 def order(x):
     x_ind = list(enumerate(x))    #pairing indices with the elements
@@ -91,7 +174,7 @@ def order(x):
 
 
 
-# ------------------- Problem 5 ------------------- #
+# ------------------- Problem ------------------- #
 
 def rank(x):
     y = list(x)
@@ -102,7 +185,7 @@ def rank(x):
 
 
 
-# ------------------- Problem 6 ------------------- #
+# ------------------- Problem ------------------- #
 
 def cummax(x):
 	max_num_list = []   # Creating empty List
@@ -116,7 +199,7 @@ def cummax(x):
 
 
 
-# ------------------- Problem 7 ------------------- #
+# ------------------- Problem ------------------- #
 
 def cumsum(x):
 	sum_list = []   # Creating empty list
@@ -129,7 +212,7 @@ def cumsum(x):
 
 
 
-# ------------------- Problem 8 ------------------- #
+# ------------------- Problem ------------------- #
 
 import re   # Importing the regex library to use lower command
 def lower_case(x):
@@ -143,7 +226,7 @@ def tokenize(x):
 
 
 
-# ------------------- Problem 9 ------------------- #
+# ------------------- Problem ------------------- #
 
 # Using function 'lower_case' from above 
 
@@ -163,7 +246,7 @@ def count_words(x):
 
 
 
-# ------------------- Problem 10 ------------------- #
+# ------------------- Problem ------------------- #
 
 def ifelse(test,yes,no):
 	res_list = []   # Creating empty list to add values
